@@ -1,0 +1,48 @@
+@using aspnetcore_htmlParser.Models;
+@model Stat
+@{ Layout = null; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width' />
+    <title>aspnetcore_htmlParser</title>
+    <link rel='stylesheet' href='/lib/bootstrap/dist/css/bootstrap.css' />
+    <link rel='stylesheet' href='/css/site.css' />
+</head>
+<body>
+    <div class='text-center wrapper'>
+        <div class="jumbotron">
+            <h1 class="display-4">Пандемия COVID-19 </h1>
+            <hr class="my-4">
+            <p>Всего в мире:</p>
+        </div>
+    @if(Model != null) {
+        <table class='table table-bordered'>
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Заражено</th>
+                <th scope="col">Выздор.</th>
+                <th scope="col">Умерло</th>
+                <th scope="col">Летал.</th>
+                <th scope="col">На 1 млн</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@string.Format("{0:n0}",Model.TotalInfected)</td>
+                    <td>@string.Format("{0:n0}",Model.TotalRecovered)</td>
+                    <td>@string.Format("{0:n0}",Model.TotalDeath)</td>
+                    <td>@Model.MortalityRate %</td>
+                    <td>@string.Format("{0:n0}",Model.DeathPerMillion)</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else{
+        <div class="alert alert-danger" role="alert">
+            Нет данных
+        </div>
+    }
+    </div>
+</body>
+</html>
